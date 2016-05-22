@@ -16,7 +16,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         patternView = (PatternView) findViewById(R.id.patternView);
-        Toast.makeText(getApplicationContext(), "ENTER PATTERN", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "미완성버전, 맨처음 입력한 패턴이 비밀번호가 됩니다.", Toast.LENGTH_LONG).show();
         patternView.setOnPatternDetectedListener(new PatternView.OnPatternDetectedListener() {
             
             @Override
@@ -27,10 +27,12 @@ public class MainActivity extends Activity {
                     return;
                 }
                 if (patternString.equals(patternView.getPatternString())) {
-                    Toast.makeText(getApplicationContext(), "PATTERN CORRECT", Toast.LENGTH_SHORT).show();
-                    return;
+                    finish();
+                    android.os.Process.killProcess(android.os.Process.myPid());
+                    //exit app
+                    //여기 if구문에 특수기능을 넣어야함
                 }
-                Toast.makeText(getApplicationContext(), "PATTERN NOT CORRECT", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "다시 입력해주세요", Toast.LENGTH_SHORT).show();
 //                patternView.clearPattern();
             }
         });
