@@ -28,19 +28,13 @@ import com.sy.pattern.utils.CellUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PatternView extends View {
 
-    /**
-     * The width of the matrix.
-     */
-    private int gridColumns;
-    /**
-     * The width of the matrix.
-     */
-    private int gridRows;
-    /**
-     * The maximum size when it is used wrap content.
-     */
+
+public class PatternView extends View {
+    public int gridColumns=GlobalVariable.Columns;
+    public int gridRows=GlobalVariable.Rows;
+
+
     private int maxSize = 0;
     /**
      * Manager for the cells.
@@ -147,8 +141,8 @@ public class PatternView extends View {
             circlePaint.setColorFilter(new PorterDuffColorFilter(circleColor, PorterDuff.Mode.MULTIPLY));
             dotPaint.setColorFilter(new PorterDuffColorFilter(dotColor, PorterDuff.Mode.MULTIPLY));
             pathPaint.setColor(typedArray.getColor(R.styleable.PatternView_pathColor, Color.WHITE));
-            gridColumns = typedArray.getInt(R.styleable.PatternView_gridColumns, 3);
-            gridRows = typedArray.getInt(R.styleable.PatternView_gridRows, 3);
+         //   gridColumns = typedArray.getInt(R.styleable.PatternView_gridColumns, 3);
+           // gridRows = typedArray.getInt(R.styleable.PatternView_gridRows, 3);
         } finally {
             typedArray.recycle();
         }
@@ -1048,6 +1042,8 @@ public class PatternView extends View {
         inStealthMode = ss.isInStealthMode();
         enableHapticFeedback = ss.isTactileFeedbackEnabled();
     }
+
+
 
     /**
      * The parecelable for saving and restoring a lock pattern view.
