@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">pattern</string>
+    <string name="setbutton">저장</string>
 </resources>
