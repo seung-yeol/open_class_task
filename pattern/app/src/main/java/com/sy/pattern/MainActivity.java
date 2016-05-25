@@ -10,35 +10,32 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
-    private PatternView patternView;
+    static public PatternView patternView;
 
-    private String patternString;
+    static public String patternString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         patternView = (PatternView) findViewById(R.id.patternView);
-        Toast.makeText(getApplicationContext(), "미완성버전, 맨처음 입력한 패턴이 비밀번호가 됩니다.", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"미완성버전, 맨처음 입력한 패턴이 비밀번호가 됩니다.", Toast.LENGTH_LONG).show();
         patternView.setOnPatternDetectedListener(new PatternView.OnPatternDetectedListener() {
 
             @Override
             public void onPatternDetected() {
                 if (patternString == null) {
                     patternString = patternView.getPatternString();
-//                    patternView.clearPattern();
-                    return;
-                }
-                if (patternString.equals(patternView.getPatternString())) {
+                    patternView.clearPattern();
+
                     finish();
-                    android.os.Process.killProcess(android.os.Process.myPid());
-                    //exit app
-                    //여기 if구문에 특수기능을 넣어야함
+                    Intent intent = new Intent(getApplicationContext(),CheckingActivity.class);
+                    startActivity(intent);
                 }
-                Toast.makeText(getApplicationContext(), "다시 입력해주세요", Toast.LENGTH_SHORT).show();
-//                patternView.clearPattern();
+
             }
         });
+
 
 
         Button button = (Button) findViewById(R.id.button);  //설정을 누르면 설정창에 들어가는 부분

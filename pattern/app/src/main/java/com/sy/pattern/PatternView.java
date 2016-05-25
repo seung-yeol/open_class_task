@@ -142,7 +142,7 @@ public class PatternView extends View {
             dotPaint.setColorFilter(new PorterDuffColorFilter(dotColor, PorterDuff.Mode.MULTIPLY));
             pathPaint.setColor(typedArray.getColor(R.styleable.PatternView_pathColor, Color.WHITE));
          //   gridColumns = typedArray.getInt(R.styleable.PatternView_gridColumns, 3);
-           // gridRows = typedArray.getInt(R.styleable.PatternView_gridRows, 3);
+            // gridRows = typedArray.getInt(R.styleable.PatternView_gridRows, 3);
         } finally {
             typedArray.recycle();
         }
@@ -355,6 +355,7 @@ public class PatternView extends View {
 
     /**
      * @return a String that represents the current pattern. Never null
+     * 리턴값은 현재의 패턴을 나타내는 스트링.  절대 null은 안뜸.
      */
     public String patternToString() {
         if (mPattern == null) {
@@ -411,6 +412,7 @@ public class PatternView extends View {
 
     /**
      * Clear the pattern. Automatically removes any scheduled clears.
+     * 패턴을 지움. 지우도록 예약된것을 자동으로 없애줌.
      */
     public void clearPattern() {
         cancelClearDelay();
@@ -420,6 +422,7 @@ public class PatternView extends View {
 
     /**
      * Reset all pattern state.
+     * 모든 패턴 리셋.
      */
     private void resetPattern() {
         mPattern.clear();
@@ -429,7 +432,7 @@ public class PatternView extends View {
     }
 
     /**
-     * Clear the pattern lookup table.
+     * Clear the pattern look up table.
      */
     private void clearPatternDrawLookup() {
         for (int i = 0; i < gridRows; i++) {
@@ -1044,9 +1047,9 @@ public class PatternView extends View {
     }
 
 
-
+/*
     /**
-     * The parecelable for saving and restoring a lock pattern view.
+     * The parcelable for saving and restoring a lock pattern view.
      */
     private static class SavedState extends BaseSavedState {
 
