@@ -2,6 +2,7 @@ package com.sy.pattern;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,8 +11,16 @@ import android.widget.TextView;
 
 
 public class SettingActivity extends Activity {
-    int cols=0;
+    public void saveintPreferences(String str, int a){   //프리퍼런스 저장 키와 정수형 키값을 받음
+        SharedPreferences pref = getSharedPreferences(str,0);
+
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putInt(str,a);
+        editor.commit();
+
+    }
     int rows=0;
+    int cols=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +33,7 @@ public class SettingActivity extends Activity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 print.setText("가로길이 : " + (progress +3));
                 rows = progress + 3;
+                saveintPreferences("prefRows",rows);
             }
 
             @Override
@@ -45,6 +55,7 @@ public class SettingActivity extends Activity {
             public void onProgressChanged(SeekBar seekBar2, int progress2, boolean fromUser) {
                 print2.setText("세로길이 : " + (progress2 +3));
                 cols = progress2 + 3;
+                saveintPreferences("prefCols",cols);
             }
 
             @Override
