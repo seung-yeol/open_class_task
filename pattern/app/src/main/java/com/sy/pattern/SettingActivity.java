@@ -19,8 +19,8 @@ public class SettingActivity extends Activity {
         editor.commit();
 
     }
-    int rows=0;
-    int cols=0;
+    int rows=3;
+    int cols=3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,14 +37,10 @@ public class SettingActivity extends Activity {
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
+            public void onStartTrackingTouch(SeekBar seekBar) {}
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
+            public void onStopTrackingTouch(SeekBar seekBar) {}
         });
 
 
@@ -59,20 +55,15 @@ public class SettingActivity extends Activity {
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar2) {
-
-            }
+            public void onStartTrackingTouch(SeekBar seekBar2) {}
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar2) {
-
-            }
+            public void onStopTrackingTouch(SeekBar seekBar2) {}
         });
 
         Button setbutton = (Button) findViewById(R.id.setbutton);
+
         setbutton.setOnClickListener(new View.OnClickListener(){
-
-
             @Override
             public void onClick(View v) {
                 //설정창을 누르면 종료되고 변경값으로 다시 실행되게 만듦
@@ -83,9 +74,6 @@ public class SettingActivity extends Activity {
                 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                 startActivity(intent);
             }
-
-
         });
-
     }
 }

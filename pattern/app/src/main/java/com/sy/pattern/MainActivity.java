@@ -14,8 +14,6 @@ public class MainActivity extends Activity {
 
     static public String patternString;
 
-
-
     public int getintPreferences(String str) {   //키만 받음
         SharedPreferences pref = getSharedPreferences(str,0);
         int tempget = pref.getInt(str,0);
@@ -56,8 +54,6 @@ public class MainActivity extends Activity {
                     finish();
                     Intent intent = new Intent(getApplicationContext(), CheckingActivity.class);
                     startActivity(intent);
-
-
                 }
             });
         }
@@ -67,8 +63,6 @@ public class MainActivity extends Activity {
             startActivity(intent);
         }
 
-
-
         Button button = (Button) findViewById(R.id.button);  //설정을 누르면 설정창에 들어가는 부분
         button.setOnClickListener(new View.OnClickListener(){
            @Override
@@ -77,13 +71,6 @@ public class MainActivity extends Activity {
                Intent intent = new Intent(getApplicationContext(),SettingActivity.class);
                startActivity(intent);
            }
-
         });
-
-
-
-
-
     }
-
 }

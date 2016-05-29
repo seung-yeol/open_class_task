@@ -15,6 +15,7 @@
         patternview:circleColor="@color/highlighted_text_material_light"
         patternview:dotColor="@android:color/black"
 
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 

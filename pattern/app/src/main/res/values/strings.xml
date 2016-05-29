@@ -3,4 +3,6 @@
     <string name="setbutton">저장</string>
     <string name="cols_length">세로길이 : 3</string>
     <string name="rows_length">가로길이 : 3</string>
+    <string name="startname">언락 + 더불어 킨당</string>
+    <string name="pattern_setting">패턴을 설정해주세요</string>
 </resources>
