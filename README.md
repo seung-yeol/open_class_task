@@ -3,7 +3,9 @@
 
 출처 :
 1.https://github.com/geftimov/android-patternview : 기본 틀
+
 2.http://itmir.tistory.com/382 : 앱리스트
+
 3.http://ccdev.tistory.com/14 : screen on시 강제 실행
 
 
