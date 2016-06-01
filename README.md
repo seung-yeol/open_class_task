@@ -1,6 +1,10 @@
 # open_class_task
 오픈소스과제
 
+안드로이드 스튜디오를 사용합니다.
+
+---
+
 출처 :
 
 1.https://github.com/geftimov/android-patternview : 기본 틀
