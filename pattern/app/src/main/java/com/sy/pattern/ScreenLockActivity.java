@@ -4,11 +4,12 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
 
-public class CheckingActivity extends Activity {
+public class ScreenLockActivity extends Activity {
 
     //이제 비번이 영구저장되니까 임시 리셋버튼 때문에 만든거고 나중에 지울것
     public void saveStringPreferences(String str,String str2){
@@ -16,6 +17,8 @@ public class CheckingActivity extends Activity {
         SharedPreferences.Editor editor = pref.edit();
         editor.putString(str,str2);
         editor.commit();
+
+
     }
 
     private PatternView patternView=MainActivity.patternView;
@@ -32,7 +35,12 @@ public class CheckingActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.checking_main);
+        setContentView(R.layout.screenlocklayout);
+
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
+
+                | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
+
         patternView = (PatternView) findViewById(R.id.patternView2);
         Toast.makeText(getApplicationContext(), "패턴 비밀번호를 입력하세요!", Toast.LENGTH_LONG).show();
         patternView.setOnPatternDetectedListener(new PatternView.OnPatternDetectedListener() {

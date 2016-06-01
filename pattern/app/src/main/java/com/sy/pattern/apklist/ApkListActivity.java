@@ -69,7 +69,7 @@ public class ApkListActivity extends Activity
                 .getItemAtPosition(position);
         String packname=packageInfo.packageName;
         //여기서 패키지이름을 프리퍼런스에다가 저장해야함.
-        
+
 
         finish();
         Intent intent = new Intent(getApplicationContext(),MainActivity.class);

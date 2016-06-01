@@ -21,6 +21,10 @@
         <activity android:name=".MainActivity"/>
         <activity android:name=".apklist.ApkListActivity"/>
 
+
+        <activity android:name=".ScreenLockActivity" />
+        <service android:name=".ScreenService" />
+        <receiver android:name=".ScreenReceiver" />
     </application>
 
 </manifest>
