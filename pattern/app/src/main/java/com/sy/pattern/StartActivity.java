@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.sy.pattern.apklist.ApkListActivity;
+import com.sy.pattern.screenlock.ScreenService;
 
 public class StartActivity extends Activity {
     private Button onBtn, offBtn;

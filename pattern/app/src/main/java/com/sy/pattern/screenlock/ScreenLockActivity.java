@@ -1,12 +1,18 @@
-package com.sy.pattern;
+package com.sy.pattern.screenlock;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.sy.pattern.MainActivity;
+import com.sy.pattern.PatternView;
+import com.sy.pattern.R;
 
 
 public class ScreenLockActivity extends Activity {
@@ -21,7 +27,7 @@ public class ScreenLockActivity extends Activity {
 
     }
 
-    private PatternView patternView=MainActivity.patternView;
+    private PatternView patternView= MainActivity.patternView;
     private String patternString=MainActivity.patternString;
 
     //여기있는 정수프리퍼런스 저장은 개발중에 만든것으로 그냥 리셋버튼 누르면 비밀번호 null되는거
@@ -70,5 +76,32 @@ public class ScreenLockActivity extends Activity {
             }
         });
 
+
+    }
+
+    //스크린액티비티가 정지할때( 홈버튼이라던가 백버튼 메뉴버튼 눌럿을때)
+    //실행되는부분.   문제가있는데, 홈버튼을 누르면 5초후에 반응함
+    //구글에서 막아버려서..
+    @Override
+    public void onPause(){
+        super.onPause();
+
+        finish();
+        Intent intent = new Intent(getApplicationContext(), ScreenLockActivity.class);
+        startActivity(intent);
+
+    }
+
+    //요거는 하드웨어버튼 누르면 무시하는건데 백버튼은 무시하는데 메뉴버튼,홈버튼이 무시가 안됨
+    //구글에서 보안땜시 막아서 그래서 위에거 추가하긴햇는데 그것마저도 문제가 있네
+    //최상위 뷰 띄우는것도 있긴한데 그것도 곧있으면 막힐거 같애서 그냥 위에걸로 하는게 낳을듯.
+    @Override
+    public boolean onKeyDown(int keyCode,KeyEvent event) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+            if(event.isSystem()) {
+                return true;
+            }
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sy.pattern">
 
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -22,9 +23,35 @@
         <activity android:name=".apklist.ApkListActivity"/>
 
 
-        <activity android:name=".ScreenLockActivity" />
-        <service android:name=".ScreenService" />
-        <receiver android:name=".ScreenReceiver" />
+        <activity android:name=".screenlock.ScreenLockActivity" />
+        <service android:name=".screenlock.ScreenService"/>
+        <receiver android:name=".screenlock.ScreenReceiver" />
+        <receiver
+            android:name=".screenlock.RestartReceiver"
+            android:process=".remote" >
+            <intent-filter>
+                <action android:name="RestartReceiver.restart" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".screenlock.BootReceiver"
+            android:enabled="true"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".screenlock.PackageReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED"/>
+                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
+                <action android:name="android.intent.action.PACKAGE_REPLACED"/>
+                <data android:scheme="package"/>
+            </intent-filter>
+        </receiver>
+
+        <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+
     </application>
 
 </manifest>
