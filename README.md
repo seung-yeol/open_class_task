@@ -11,7 +11,7 @@
 
 2.http://itmir.tistory.com/382 : 앱리스트
 
-3.http://ccdev.tistory.com/14 : 스크린락
+3.http://ccdev.tistory.com/category/Android%20잠금화면 : 스크린락
 
 
 
