@@ -11,7 +11,7 @@
 
 2.http://itmir.tistory.com/382 : 앱리스트
 
-3.http://ccdev.tistory.com/14 : screen on시 강제 실행
+3.http://ccdev.tistory.com/14 : 스크린락
 
 
 
