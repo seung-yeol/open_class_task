@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sy.pattern">
-
+    
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -49,8 +51,6 @@
                 <data android:scheme="package"/>
             </intent-filter>
         </receiver>
-
-        <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
 
     </application>
 
