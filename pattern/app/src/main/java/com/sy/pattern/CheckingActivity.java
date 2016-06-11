@@ -17,9 +17,14 @@ public class CheckingActivity extends Activity {
         editor.putString(str,str2);
         editor.commit();
     }
+    public String getStringPreferences(String str) {
+        SharedPreferences pref = getSharedPreferences(str,0);
+        String tempget = pref.getString(str,null);
+        return tempget;
+    }
+    public PatternView patternView;
+    public String PatternString;
 
-    private PatternView patternView=MainActivity.patternView;
-    private String patternString=MainActivity.patternString;
 
     //여기있는 정수프리퍼런스 저장은 개발중에 만든것으로 그냥 리셋버튼 누르면 비밀번호 null되는거
     public void saveintPreferences(String str, int a){   //프리퍼런스 저장 키와 정수형 키값을 받음
@@ -29,23 +34,25 @@ public class CheckingActivity extends Activity {
         editor.commit();
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        PatternString = getStringPreferences("prefCorrect");
         setContentView(R.layout.checking_main);
         patternView = (PatternView) findViewById(R.id.patternView2);
+        int count=0;
         Toast.makeText(getApplicationContext(), "패턴 비밀번호를 입력하세요!", Toast.LENGTH_LONG).show();
         patternView.setOnPatternDetectedListener(new PatternView.OnPatternDetectedListener() {
 
             @Override
             public void onPatternDetected() {
 
-                if (patternString.equals(patternView.getPatternString())) {
+                if (PatternString.equals(patternView.getPatternString())) {
                     finish();
                     android.os.Process.killProcess(android.os.Process.myPid());
-                    //exit app
-                    //여기 if구문에 특수기능을 넣어야함
-                    //선택 앱 실행 되는 기능.
+
                 }
                 Toast.makeText(getApplicationContext(), "틀렸습니다! 다시 입력해주세요.", Toast.LENGTH_SHORT).show();
                 patternView.clearPattern();

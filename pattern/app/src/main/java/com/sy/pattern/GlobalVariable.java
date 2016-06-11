@@ -1,7 +1,11 @@
 package com.sy.pattern;
 
+
+
+//전역변수 사용을 위해 만든 코드
 public class GlobalVariable {
 
-    static int Rows;
-    static int Columns;
+    public static int Rows;
+    public static int Columns;
+    public static int list;
 }

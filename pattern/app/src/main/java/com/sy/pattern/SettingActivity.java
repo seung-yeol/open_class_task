@@ -10,6 +10,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 
+
+//가로세로 길이를 설정하는 액티비티
 public class SettingActivity extends Activity {
     public void saveintPreferences(String str, int a){   //프리퍼런스 저장 키와 정수형 키값을 받음
         SharedPreferences pref = getSharedPreferences(str,0);
