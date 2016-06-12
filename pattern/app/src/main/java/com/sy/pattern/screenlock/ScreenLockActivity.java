@@ -66,7 +66,7 @@ public class ScreenLockActivity extends Activity {
 
                     | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
 
-        Toast.makeText(getApplicationContext(), "패턴 비밀번호를 입력하세요!", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "패턴 비밀번호를 입력하세요!", Toast.LENGTH_SHORT).show();
         patternView.setOnPatternDetectedListener(new PatternView.OnPatternDetectedListener() {
 
              @Override
@@ -74,18 +74,21 @@ public class ScreenLockActivity extends Activity {
                  String amho=patternView.getPatternString();
                  if (patternString.equals(amho)) {
                      finish();
-                     android.os.Process.killProcess(android.os.Process.myPid());
+
+                     //요거때문에 패턴풀면 아에 꺼진거
+                     //android.os.Process.killProcess(android.os.Process.myPid());
                  }
                  for (i=0; i < 10; i++) {
                      Toast.makeText(getApplicationContext(), "작동은 하나??"+i+getStringPreferences("APP"+i)+amho+getStringPreferences("pattern"+i), Toast.LENGTH_LONG).show();
                      if(amho.equals( getStringPreferences("pattern" + i))){
-                          Toast.makeText(getApplicationContext(), "여기는??????????????????????", Toast.LENGTH_LONG).show();
+                          Toast.makeText(getApplicationContext(), "여기는??????????????????????", Toast.LENGTH_SHORT).show();
                          PackageManager pm = getPackageManager();
                          Intent intent = pm.getLaunchIntentForPackage(getStringPreferences("APP"+i));
                          intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                          startActivity(intent);
                          finish();
-                         android.os.Process.killProcess(android.os.Process.myPid());
+                         //요거때문에 패턴풀면 아에 꺼진거
+                         //android.os.Process.killProcess(android.os.Process.myPid());
                          break;
                       }
                  }
@@ -107,7 +110,7 @@ public class ScreenLockActivity extends Activity {
         });
     }
 
-
+        /* 이거 안빼면 계속 재실행되서 빼버림
 
         //스크린액티비티가 정지할때( 홈버튼이라던가 백버튼 메뉴버튼 눌럿을때)
         //실행되는부분.   문제가있는데, 홈버튼을 누르면 5초후에 반응함
@@ -121,6 +124,7 @@ public class ScreenLockActivity extends Activity {
             startActivity(intent);
 
         }
+        */
 
         //요거는 하드웨어버튼 누르면 무시하는건데 백버튼은 무시하는데 메뉴버튼,홈버튼이 무시가 안됨
         //구글에서 보안땜시 막아서 그래서 위에거 추가하긴햇는데 그것마저도 문제가 있네
