@@ -8,4 +8,5 @@ public class GlobalVariable {
     public static int Rows;
     public static int Columns;
     public static int list;
+    public static boolean Delete_mode=false;
 }

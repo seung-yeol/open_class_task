@@ -34,7 +34,11 @@ public class ApkListActivity extends Activity
         editor.putString(str,str2);
         editor.commit();
     }
-
+    public String getStringPreferences(String str) {
+        SharedPreferences pref = getSharedPreferences(str,0);
+        String tempget = pref.getString(str,null);
+        return tempget;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -72,39 +76,59 @@ public class ApkListActivity extends Activity
         return ((pkgInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0) ? true
                 : false;
     }
-    static int i;
+    static int i=0;
     static String targetapp[] ={null,null,null,null,null,null,null,null,null,null} ;
     static String packname[] = {null,null,null,null,null,null,null,null,null,null} ;
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position,long row) {
-        Toast.makeText(getApplicationContext(), "머지??"+i, Toast.LENGTH_LONG).show();
-        PackageInfo packageInfo = (PackageInfo) parent
-                .getItemAtPosition(position);
-
-
+        PackageInfo packageInfo = (PackageInfo) parent.getItemAtPosition(position);
+        //targetapp[i]가 처음에 null이라서 적어도 한 번은 실행시키기 위해 do while 사용
         do {
-            //여기서 패키지이름을 프리퍼런스에다가 저장해야함.
+            //저장모드
+            if(GlobalVariable.Delete_mode==false) {
 
-            if (i >= 10) {
-                Toast.makeText(getApplicationContext(), "10개 이상을 등록하실 수 없습니다 ㅠㅠ", Toast.LENGTH_LONG).show();
-                finish();
-                break;
+                targetapp[i] = getStringPreferences("APP" + i);
+                if (i >= 10) {
+                    Toast.makeText(getApplicationContext(), "10개 이상을 등록하실 수 없습니다 ㅠㅠ", Toast.LENGTH_LONG).show();
+                    finish();
+                    break;
 
-            } else if (targetapp[i] == null) {
+                } else if (targetapp[i] == null) {
 
-                Toast.makeText(getApplicationContext(), "저장됨" + i, Toast.LENGTH_LONG).show();
-                targetapp[i] = "APP"+i;
-                packname[i] = packageInfo.packageName;
+                    targetapp[i] = "APP" + i;
+                    packname[i] = packageInfo.packageName;
 
-                saveStringPreferences(targetapp[i], packname[i]);
+                    saveStringPreferences(targetapp[i], packname[i]);
 
-                GlobalVariable.list = i;
-                i++;
+                    GlobalVariable.list = i;
 
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                startActivity(intent);
-                break;
+                    Toast.makeText(getApplicationContext(),packname[i]+ "앱을 저장할 패턴을 입력하세요", Toast.LENGTH_SHORT).show();
+                    i++;
+
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+
+                    startActivity(intent);
+                    break;
+                }
+            }
+            //삭제모드
+            else {
+                GlobalVariable.Delete_mode = false;
+
+                String imsiapp = packageInfo.packageName;
+                for(int i=0;i<10;i++) {
+
+                    packname[i] = getStringPreferences("APP" + i);
+                    //null객체 때문에 계속 오류나서 null아닐때만 비교하는걸로
+                    if(packname[i]!=null) {
+                        if (packname[i].equals(imsiapp)) {
+                            saveStringPreferences("APP" + i, null);
+                            saveStringPreferences("pattern" + i, null);
+                            Toast.makeText(getApplicationContext(), packname[i] + "앱과 패턴이 삭제되었습니다.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
             }
         }while(targetapp[i] !=null);
         finish();

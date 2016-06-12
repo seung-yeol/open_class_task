@@ -78,23 +78,24 @@ public class ScreenLockActivity extends Activity {
                      //요거때문에 패턴풀면 아에 꺼진거
                      //android.os.Process.killProcess(android.os.Process.myPid());
                  }
-                 for (i=0; i < 10; i++) {
-                     Toast.makeText(getApplicationContext(), "작동은 하나??"+i+getStringPreferences("APP"+i)+amho+getStringPreferences("pattern"+i), Toast.LENGTH_LONG).show();
-                     if(amho.equals( getStringPreferences("pattern" + i))){
-                          Toast.makeText(getApplicationContext(), "여기는??????????????????????", Toast.LENGTH_SHORT).show();
-                         PackageManager pm = getPackageManager();
-                         Intent intent = pm.getLaunchIntentForPackage(getStringPreferences("APP"+i));
-                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                         startActivity(intent);
-                         finish();
-                         //요거때문에 패턴풀면 아에 꺼진거
-                         //android.os.Process.killProcess(android.os.Process.myPid());
-                         break;
-                      }
+                 else if(i<10) {
+                     for (i = 0; i < 10; i++) {
+                         if (amho.equals(getStringPreferences("pattern" + i))) {
+                             PackageManager pm = getPackageManager();
+                             Intent intent = pm.getLaunchIntentForPackage(getStringPreferences("APP" + i));
+                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                             startActivity(intent);
+                             finish();
+                             //요거때문에 패턴풀면 아에 꺼진거
+                             //android.os.Process.killProcess(android.os.Process.myPid());
+                             break;
+                         }
+                     }
                  }
-                    Toast.makeText(getApplicationContext(), "틀렸습니다! 다시 입력해주세요.", Toast.LENGTH_SHORT).show();
-                    patternView.clearPattern();
-
+                 else{
+                     Toast.makeText(getApplicationContext(), "틀렸습니다! 다시 입력해주세요.", Toast.LENGTH_SHORT).show();
+                     patternView.clearPattern();
+                 }
 
             }
         });

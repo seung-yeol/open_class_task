@@ -1,7 +1,6 @@
 package com.sy.pattern;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -13,7 +12,7 @@ import android.widget.TextView;
 
 //가로세로 길이를 설정하는 액티비티
 public class SettingActivity extends Activity {
-    public void saveintPreferences(String str, int a){   //프리퍼런스 저장 키와 정수형 키값을 받음
+    public void saveintPreferences(String str, int a){
         SharedPreferences pref = getSharedPreferences(str,0);
 
         SharedPreferences.Editor editor = pref.edit();
@@ -21,6 +20,7 @@ public class SettingActivity extends Activity {
         editor.commit();
 
     }
+
     int rows=3;
     int cols=3;
     @Override
@@ -73,8 +73,6 @@ public class SettingActivity extends Activity {
                 GlobalVariable.Rows=rows;
 
                 finish();
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                startActivity(intent);
             }
         });
     }

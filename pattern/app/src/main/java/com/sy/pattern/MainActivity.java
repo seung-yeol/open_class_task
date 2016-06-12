@@ -41,10 +41,17 @@ public class MainActivity extends Activity {
         patternView = (PatternView) findViewById(R.id.patternView);
         patternString = getStringPreferences("prefCorrect");
 
+
+        //스트링이 중복되지 않는 곳에 들어가게 일단 null  아닌지 판단하려고 불러들여옴
+
         int count=0;
+
 //prefCorrect에 키값이 null이면 일단 기본 패턴 비밀번호를 입력한다
+        //이부분에서 리셋때문에 버그생기는거 수정해야함
+        //앱이 켜진 채로 리셋시키면 앱연동창 켰을 때 기본 비밀번호 설정이 뜸
+
         if (patternString == null){
-            Toast.makeText(getApplicationContext(),"미완성버전, 맨처음 입력한 패턴이 비밀번호가 됩니다.", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"미완성버전, 맨처음 입력한 패턴이 기본 비밀번호가 됩니다.", Toast.LENGTH_LONG).show();
             patternView.setOnPatternDetectedListener(new PatternView.OnPatternDetectedListener() {
 
                 @Override
@@ -57,17 +64,20 @@ public class MainActivity extends Activity {
                 }
             });
         }
+        //기본 패턴이 있다면 연동된 프로그램 패턴 저장
 
         else if(count <10){
             patternView.setOnPatternDetectedListener(new PatternView.OnPatternDetectedListener() {
 
-                String targetpattern[]={null,null,null,null,null,null,null,null,null,null,null};
+                String targetpattern[]={null,null,null,null,null,null,null,null,null,null};
                 @Override
                 public void onPatternDetected() {
+
                     targetpattern[GlobalVariable.list]= patternView.getPatternString();
                     saveStringPreferences("pattern"+GlobalVariable.list,targetpattern[GlobalVariable.list]);
+                    Toast.makeText(getApplicationContext(),"저장되었습니다.",Toast.LENGTH_SHORT).show();
                     patternView.clearPattern();
-                    Toast.makeText(getApplicationContext(),"제발"+GlobalVariable.list+getStringPreferences("pattern"+GlobalVariable.list),Toast.LENGTH_LONG).show();
+
                     finish();
                 }
             });
