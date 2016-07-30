@@ -58,9 +58,9 @@ public class ScreenService extends Service {
 
     @Override
     public void onDestroy(){
-        super.onDestroy();
         if(mReceiver != null){
-            unregisterReceiver(mReceiver);
+            super.onDestroy();
+           unregisterReceiver(mReceiver);
         }
 
         if(pReceiver != null) {

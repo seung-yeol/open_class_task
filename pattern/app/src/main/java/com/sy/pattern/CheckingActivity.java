@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-
+//패턴의 정답 유무를 판별하는 액티비티
 public class CheckingActivity extends Activity {
 
     //이제 비번이 영구저장되니까 임시 리셋버튼 때문에 만든거고 나중에 지울것

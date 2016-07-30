@@ -13,14 +13,15 @@ import static android.content.Intent.ACTION_SCREEN_OFF;
 //각종 broadcast 를 받는 클래스
 public class ScreenReceiver extends BroadcastReceiver {
 
-    private KeyguardManager km = null;
-    private KeyguardManager.KeyguardLock keyLock = null;
+    static KeyguardManager km = null;
+    static KeyguardManager.KeyguardLock keyLock = null;
     private TelephonyManager telephonyManager = null;
     private boolean isPhoneIdle = true;
 
 
     @Override
     public void onReceive(Context context, Intent intent) {
+
         if (intent.getAction().equals(ACTION_SCREEN_OFF)) {
 
             // 안드로이드 기본 잠금화면 없애기 위해
@@ -37,25 +38,20 @@ public class ScreenReceiver extends BroadcastReceiver {
             }
 
             if(isPhoneIdle) {
-                disableKeyguard();
+                keyLock.disableKeyguard();
             }
-
+            keyLock.reenableKeyguard();
             Intent i = new Intent(context, ScreenLockActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
             context.startActivity(i);
         }
     }
 
-    public void disableKeyguard() {
-        keyLock.disableKeyguard();
-    }
 
     //ScreenService의 onDestroy()에서 mReceiver.reenableKeyguard();를
     // 호출해주면 내 잠금화면은 사라지고 기본 잠금화면이 다시 나타나게 됨
     // 우리한텐 별 필요없는거지만 혹시나해서
-    public void reenableKeyguard() {
-        keyLock.reenableKeyguard();
-    }
 
 
     //전화오면 스크린락 해제됨
