@@ -7,8 +7,6 @@ import android.content.Intent;
 
 //앱이 업데이트되었을때 재실행 하기 위해.
 public class PackageReceiver extends BroadcastReceiver {
-    KeyguardManager km=null;
-    KeyguardManager.KeyguardLock keyLock= null;
     @Override
 
     public void onReceive(Context context, Intent intent) {

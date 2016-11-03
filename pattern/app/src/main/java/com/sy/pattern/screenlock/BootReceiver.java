@@ -4,6 +4,7 @@ import android.app.KeyguardManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.view.View;
 
 
 //폰 부팅시 실행하는 리시버
@@ -19,6 +20,7 @@ public class BootReceiver extends BroadcastReceiver {
             context.startService(i);
 
         }
+
 
 
     }

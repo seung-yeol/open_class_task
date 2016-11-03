@@ -1,6 +1,5 @@
 package com.sy.pattern.screenlock;
 
-import android.app.KeyguardManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -13,8 +12,7 @@ import static android.content.Intent.ACTION_SCREEN_OFF;
 //각종 broadcast 를 받는 클래스
 public class ScreenReceiver extends BroadcastReceiver {
 
-    static KeyguardManager km = null;
-    static KeyguardManager.KeyguardLock keyLock = null;
+
     private TelephonyManager telephonyManager = null;
     private boolean isPhoneIdle = true;
 
@@ -25,11 +23,6 @@ public class ScreenReceiver extends BroadcastReceiver {
         if (intent.getAction().equals(ACTION_SCREEN_OFF)) {
 
             // 안드로이드 기본 잠금화면 없애기 위해
-            if (km == null)
-                km = (KeyguardManager) context.getSystemService(Context.KEYGUARD_SERVICE);
-
-            if (keyLock == null)
-                keyLock = km.newKeyguardLock(Context.KEYGUARD_SERVICE);
 
             //전화 왔을시 스크린락을 해제하기위한 리스너,서비스 설정
             if(telephonyManager == null){
@@ -38,9 +31,8 @@ public class ScreenReceiver extends BroadcastReceiver {
             }
 
             if(isPhoneIdle) {
-                keyLock.disableKeyguard();
             }
-            keyLock.reenableKeyguard();
+            //ScreenService.keyLock.reenableKeyguard();
             Intent i = new Intent(context, ScreenLockActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 

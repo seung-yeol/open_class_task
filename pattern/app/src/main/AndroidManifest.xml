@@ -2,9 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sy.pattern">
 
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
     <uses-permission android:name="android.permission.ENABLE_KEYGUARD" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -20,17 +22,20 @@
             </intent-filter>
         </activity>
         <activity android:name=".SettingActivity" />
-        <activity android:name=".CheckingActivity"/>
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".apklist.ApkListActivity"/>
-
-
+        <activity android:name=".MainActivity" />
+        <activity android:name=".apklist.ApkListActivity" />
         <activity android:name=".screenlock.ScreenLockActivity" />
-        <service android:name=".screenlock.ScreenService"/>
-        <receiver android:name=".screenlock.ScreenReceiver" />
+
+        <service android:name=".screenlock.ScreenService" />
+
+        <receiver android:name=".screenlock.ScreenReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.SCREEN_OFF" />
+            </intent-filter>
+        </receiver>
         <receiver
             android:name=".screenlock.RestartReceiver"
-            android:process=".remote" >
+            android:process=".remote">
             <intent-filter>
                 <action android:name="RestartReceiver.restart" />
             </intent-filter>
@@ -38,22 +43,22 @@
         <receiver
             android:name=".screenlock.BootReceiver"
             android:enabled="true"
-            android:exported="false" >
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
         <receiver android:name=".screenlock.PackageReceiver">
             <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_ADDED"/>
-                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
-                <action android:name="android.intent.action.PACKAGE_REPLACED"/>
-                <data android:scheme="package"/>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+
+                <data android:scheme="package" />
             </intent-filter>
         </receiver>
 
-
-
+        <activity android:name=".OpensourceLicense"></activity>
     </application>
 
 </manifest>

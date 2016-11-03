@@ -29,6 +29,8 @@ public class MainActivity extends Activity {
         SharedPreferences.Editor editor = pref.edit();
         editor.putString(str,str2);
         editor.commit();
+
+
     }
 
     @Override
@@ -96,5 +98,6 @@ public class MainActivity extends Activity {
                 startActivity(intent);
             }
         });
+
     }
 }

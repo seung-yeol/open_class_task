@@ -10,8 +10,6 @@ import android.content.Intent;
 public class RestartReceiver extends BroadcastReceiver {
 
     static public final String ACTION_RESTART_SERVICE = "RestartReceiver.restart";    // 값은 맘대로
-    KeyguardManager km=null;
-    KeyguardManager.KeyguardLock keyLock= null;
     @Override
     public void onReceive(Context context, Intent intent) {
         if (intent.getAction().equals(ACTION_RESTART_SERVICE)) {

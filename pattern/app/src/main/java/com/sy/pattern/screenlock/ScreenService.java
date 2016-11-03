@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.IBinder;
 import android.os.SystemClock;
-
 /**
  * 출처 http://ccdev.tistory.com/14 on 2016-06-01.
  */
@@ -17,6 +16,10 @@ public class ScreenService extends Service {
     private ScreenReceiver mReceiver = null;
     private PackageReceiver pReceiver;
 
+
+
+
+
     @Override
     public IBinder onBind(Intent intent) {
         return null;
@@ -24,6 +27,8 @@ public class ScreenService extends Service {
 
     @Override
     public void onCreate() {
+
+
         super.onCreate();
         mReceiver = new ScreenReceiver();
         IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_OFF);
@@ -42,7 +47,6 @@ public class ScreenService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId){
         super.onStartCommand(intent, flags, startId);
-
         if(intent != null){
             if(intent.getAction()==null){
                 if(mReceiver==null){

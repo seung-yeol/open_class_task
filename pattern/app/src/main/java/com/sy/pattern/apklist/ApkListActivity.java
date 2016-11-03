@@ -2,6 +2,7 @@
 
 package com.sy.pattern.apklist;
 
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -104,33 +105,36 @@ public class ApkListActivity extends Activity
                     GlobalVariable.list = i;
 
                     Toast.makeText(getApplicationContext(),packname[i]+ "앱을 저장할 패턴을 입력하세요", Toast.LENGTH_SHORT).show();
-                    i++;
+
 
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                     break;
                 }
+                i++;
             }
+        }while(targetapp[i] ==null);
             //삭제모드
-            else {
-                GlobalVariable.Delete_mode = false;
+//            if(GlobalVariable.Delete_mode) {
+//                GlobalVariable.Delete_mode = false;
+//
+//                //String imsiapp = packageInfo.packageName;
+//                for(int i=0;i<10;i++) {
+//
+//                    packname[i] = getStringPreferences("APP" + i);
+//                    //null객체 때문에 계속 오류나서 null아닐때만 비교하는걸로
+//                    if(packname[i]!=null) {
+//                        //if (packname[i].equals(imsiapp)) {
+//                            saveStringPreferences("APP" + i, null);
+//                            saveStringPreferences("pattern" + i, null);
+//
+//                        //}
+//                    }
+//                }
+//                Toast.makeText(getApplicationContext(),"앱과 패턴이 모두 삭제되었습니다.", Toast.LENGTH_SHORT).show();
+//            }
 
-                String imsiapp = packageInfo.packageName;
-                for(int i=0;i<10;i++) {
-
-                    packname[i] = getStringPreferences("APP" + i);
-                    //null객체 때문에 계속 오류나서 null아닐때만 비교하는걸로
-                    if(packname[i]!=null) {
-                        if (packname[i].equals(imsiapp)) {
-                            saveStringPreferences("APP" + i, null);
-                            saveStringPreferences("pattern" + i, null);
-                            Toast.makeText(getApplicationContext(), packname[i] + "앱과 패턴이 삭제되었습니다.", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }
-            }
-        }while(targetapp[i] !=null);
         finish();
 
 

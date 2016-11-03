@@ -30,6 +30,7 @@ public class SettingActivity extends Activity {
 
         final TextView print = (TextView) findViewById(R.id.textView);
         SeekBar rawlength = (SeekBar) findViewById(R.id.seekBar);
+
         rawlength.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
